@@ -10,11 +10,11 @@ public class DecryptionCezar extends CezarCryptoMethods{
 		for(int i=0; i<input.length(); ++i){
 			char c = input.charAt(i);
 			
-			if(findIndLower(c) == -1){
+			if((findIndLower(c) == -1) && (findIndUpper(c) != -1)){
 				int x = (findIndUpper(c)-k+n)%n;
 				dec.append(upper[x]);
 			}
-			if(findIndUpper(c) == -1){
+			if((findIndUpper(c) == -1) && (findIndLower(c) != -1)){
 				int x = (findIndLower(c)-k+n)%n;
 				dec.append(lower[x]);
 			}
@@ -34,11 +34,11 @@ public class DecryptionCezar extends CezarCryptoMethods{
 		for(int i=0; i<input.length(); ++i){
 			char c = input.charAt(i);
 			
-			if(findIndLower(c) == -1){
+			if((findIndLower(c) == -1) && (findIndUpper(c) != -1)){
 				int x = (findIndUpper(c)-k+n)%n;
 				dec.append(upper[x]);
 			}
-			if(findIndUpper(c) == -1){
+			if((findIndUpper(c) == -1) && (findIndLower(c) != -1)){
 				int x = (findIndLower(c)-k+n)%n;
 				dec.append(lower[x]);
 			}

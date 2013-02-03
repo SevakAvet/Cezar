@@ -13,11 +13,11 @@ public class EncryptCezar extends CezarCryptoMethods{
 		for(int i=0; i<input.length(); ++i){
 			char c = input.charAt(i);
 			
-			if(findIndLower(c) == -1){
+			if((findIndLower(c) == -1) && (findIndUpper(c) != -1)){
 				int y = (findIndUpper(c)+k)%n;
 				output.append(upper[y]);
 			}
-			if(findIndUpper(c) == -1){
+			if((findIndUpper(c) == -1) && (findIndLower(c) != -1)){
 				int y = (findIndLower(c)+k)%n;
 				output.append(lower[y]);
 			}
