@@ -1,8 +1,8 @@
 package com.sevak_avet.GUI;
 
 public enum CONST {
-	VERSION_ENCRYPT("Cezar Encryption v0.1a"),
-	VERSION_DECRYPT("Cezar Decryption v0.1a"),
+	VERSION_ENCRYPT("Cezar Encryption v1.0a"),
+	VERSION_DECRYPT("Cezar Decryption v1.0a"),
 	WIDTH(400),
 	HEIGHT(300);
 	
