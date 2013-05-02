@@ -1,59 +1,59 @@
 package com.sevak_avet.Cryption;
 
-public class DecryptionCezar extends CezarCryptoMethods{
+public class DecryptionCezar extends CezarCryptoMethods {
 	private String output;
-	
-	public DecryptionCezar(String text, int k){
-		
+
+	public DecryptionCezar(String text, int k) {
+
 		String input = text;
 		StringBuilder dec = new StringBuilder();
-		
-		for(int i=0; i<input.length(); ++i){
+
+		for (int i = 0; i < input.length(); ++i) {
 			char c = input.charAt(i);
-			
-			if((findInLower(c) == -1) && (findInUpper(c) != -1)){
-				int x = (findInUpper(c)-k+n)%n;
-				dec.append(upper[x]);
+
+			if (isEnglish(c)) {
+				int x = (findInEnglish(c) - k + nEng) % nEng;
+
+				if (Character.isUpperCase(c)) {
+					dec.append(engslish[x]);
+				} else {
+					dec.append(Character.toLowerCase(engslish[x]));
+				}
+
+				continue;
 			}
-			if((findInUpper(c) == -1) && (findInLower(c) != -1)){
-				int x = (findInLower(c)-k+n)%n;
-				dec.append(lower[x]);
+
+			if (isRussian(c)) {
+				int x = (findInRussian(c) - k + nRus) % nRus;
+
+				if (Character.isUpperCase(c)) {
+					dec.append(russian[x]);
+				} else {
+					dec.append(Character.toLowerCase(russian[x]));
+				}
+
+				continue;
 			}
-			if((findInUpper(c) == -1) && (findInLower(c) == -1)){
+
+			if (!isEnglish(c) && !isRussian(c)) {
 				dec.append(c);
 			}
 		}
-		
-		this.output = dec.toString();
+
+		output = dec.toString();
 	}
-	
+
 	public DecryptionCezar(EncryptCezar enc) {
 		int k = enc.getK();
 		String input = enc.getEncText();
-		
-		StringBuilder dec = new StringBuilder();
-		
-		for(int i=0; i<input.length(); ++i){
-			char c = input.charAt(i);
-			
-			if((findInLower(c) == -1) && (findInUpper(c) != -1)){
-				int x = (findInUpper(c)-k+n)%n;
-				dec.append(upper[x]);
-			}
-			if((findInUpper(c) == -1) && (findInLower(c) != -1)){
-				int x = (findInLower(c)-k+n)%n;
-				dec.append(lower[x]);
-			}
-			if((findInUpper(c) == -1) && (findInLower(c) == -1)){
-				dec.append(c);
-			}
-		}
-		
-		this.output = dec.toString();
+
+		DecryptionCezar dec = new DecryptionCezar(input, k);
+		output = dec.getDecText();
+
 	}
-	
-	public String getDecText(){
-		return this.output;
+
+	public String getDecText() {
+		return output;
 	}
 
 }
